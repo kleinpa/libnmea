@@ -80,6 +80,32 @@ nmea_time_parse(char *s, struct tm *time)
 }
 
 int
+nmea_time_ms_parse(char *s, unsigned char *hours, unsigned char *minutes,
+                       unsigned char *seconds, unsigned int *milliseconds)
+{
+	char *rv;
+	uint32_t x;
+
+	if (s == NULL || *s == '\0') {
+		return -1;
+	}
+
+	x = strtoul(s, &rv, 10);
+	*hours = x / 10000;
+	*minutes = (x % 10000) / 100;
+	*seconds = x % 100;
+	if (*hours > 23 || *minutes > 59 || *seconds > 59 || (int) (rv - s) < NMEA_TIME_FORMAT_LEN) {
+		return -1;
+	}
+	if (*rv == '.') {
+		char* s2 = rv+1;
+		*milliseconds= strtoul(s2, &rv, 10);
+	}
+
+	return 0;
+}
+
+int
 nmea_date_parse(char *s, struct tm *date)
 {
 	char *rv;

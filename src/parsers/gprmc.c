@@ -36,6 +36,7 @@ free_data(nmea_s *data)
 	return 0;
 }
 
+#include <stdio.h>
 int
 parse(nmea_parser_s *parser, char *value, int val_index)
 {
@@ -45,6 +46,7 @@ parse(nmea_parser_s *parser, char *value, int val_index)
 	case NMEA_GPRMC_TIME:
 		/* Parse time */
 		if (-1 == nmea_time_parse(value, &data->date_time)) {
+            printf("unable to parse time");
 			return -1;
 		}
 		break;
@@ -52,6 +54,7 @@ parse(nmea_parser_s *parser, char *value, int val_index)
 	case NMEA_GPRMC_DATE:
 		/* Parse date */
 		if (-1 == nmea_date_parse(value, &data->date_time)) {
+            printf("unable to parse date");
 			return -1;
 		}
 		break;
@@ -63,6 +66,7 @@ parse(nmea_parser_s *parser, char *value, int val_index)
 		} else if (*value == 'V') {
 			data->valid = false;
 		} else {
+            printf("unable to parse status");
 			return -1;
 		}
 		break;
@@ -70,6 +74,7 @@ parse(nmea_parser_s *parser, char *value, int val_index)
 	case NMEA_GPRMC_LATITUDE:
 		/* Parse latitude */
 		if (-1 == nmea_position_parse(value, &data->latitude)) {
+            printf("unable to parse lat");
 			return -1;
 		}
 		break;
@@ -78,6 +83,7 @@ parse(nmea_parser_s *parser, char *value, int val_index)
 		/* Parse cardinal direction */
 		data->latitude.cardinal = nmea_cardinal_direction_parse(value);
 		if (NMEA_CARDINAL_DIR_UNKNOWN == data->latitude.cardinal) {
+            printf("unable to parse lat car");
 			return -1;
 		}
 		break;
@@ -85,6 +91,7 @@ parse(nmea_parser_s *parser, char *value, int val_index)
 	case NMEA_GPRMC_LONGITUDE:
 		/* Parse longitude */
 		if (-1 == nmea_position_parse(value, &data->longitude)) {
+            printf("unable to parse lon");
 			return -1;
 		}
 		break;
@@ -93,6 +100,7 @@ parse(nmea_parser_s *parser, char *value, int val_index)
 		/* Parse cardinal direction */
 		data->longitude.cardinal = nmea_cardinal_direction_parse(value);
 		if (NMEA_CARDINAL_DIR_UNKNOWN == data->longitude.cardinal) {
+            printf("unable to parse lon car");
 			return -1;
 		}
 		break;
@@ -117,6 +125,7 @@ parse(nmea_parser_s *parser, char *value, int val_index)
 		data->magvar_cardinal = nmea_cardinal_direction_parse(value);
 		if (NMEA_CARDINAL_DIR_UNKNOWN == data->magvar_cardinal) {
 			data->magvar_cardinal = NMEA_CARDINAL_DIR_UNKNOWN;
+            printf("unable to parse status");
 			return -1;
 		}
 		break;

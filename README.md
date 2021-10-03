@@ -15,7 +15,8 @@ If you find any sentence missing, please add it by contributing to the code. I
 am open to suggestions regarding the code and architecture, so if you have any
 ideas or improvements, please tell me or submit a merge request :-).
 
-Supported sentences: `GPGGA`, `GPGLL`, `GPGSA`, `GPGSV`, `GPRMC`, `GPTXT`, and `GPVTG`.
+Supported sentences: `GPGGA`, `GPGLL`, `GPGSA`, `GPGSV`, `GPRMC`, `GPTXT`, 
+`GPVTG`, and `GPZDA`.
 
 ## To build
 

@@ -8,6 +8,7 @@ init(nmea_parser_s *parser)
 	/* Declare what sentence type to parse */
 	NMEA_PARSER_TYPE(parser, NMEA_GPGGA);
 	NMEA_PARSER_PREFIX(parser, "GPGGA");
+	NMEA_PARSER_PREFIX(parser, "GNGGA");
 	return 0;
 }
 

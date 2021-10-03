@@ -41,6 +41,9 @@ DECLARE_PARSER_API(gptxt)
 #ifdef ENABLE_GPVTG
 DECLARE_PARSER_API(gpvtg)
 #endif
+#ifdef ENABLE_GPZDA
+DECLARE_PARSER_API(gpzda)
+#endif
 
 nmea_parser_module_s parsers[PARSER_COUNT];
 
@@ -77,6 +80,9 @@ nmea_load_parsers()
 #endif
 #ifdef ENABLE_GPVTG
 	PARSER_LOAD(gpvtg);
+#endif
+#ifdef ENABLE_GPZDA
+	PARSER_LOAD(gpzda);
 #endif
 
 	return PARSER_COUNT;

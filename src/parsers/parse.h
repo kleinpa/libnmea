@@ -52,6 +52,18 @@ nmea_cardinal_t nmea_cardinal_direction_parse(char *s);
  * Returns 0 on success, otherwise -1.
  */
 int nmea_time_parse(char *s, struct tm *time);
+/**
+ * Parse time from a string
+ *
+ * s is a string containing the time in format "HHMMSS.SSS".
+ * time is a pointer to a tm struct where the parser time will be stored.
+ * It is assumed that time is already initialized, no initialization is done
+ * to the structure in this function.
+ *
+ * Returns 0 on success, otherwise -1.
+ */
+int nmea_time_ms_parse(char *s, unsigned char *hours, unsigned char *minutes,
+                       unsigned char *seconds, unsigned int *milliseconds);
 
 /**
  * Parse date from a string
